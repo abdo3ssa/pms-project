@@ -1,13 +1,22 @@
 <?php include('../includes/header.php'); ?>
+<?php include('../../classes/Session.php'); ?>
 <div class="col-8 mx-auto">
     <h1 class="text-center p-3 my-2">
         Add Product
     </h1>
-    <?php if (checkSession('success')) : ?>
+
+    <?php if (Session::checkSession('success')) : ?>
         <div class="alert alert-success" role="alert">
-            <?= getSession('success') ?>
+            <?= Session::getSession('success') ?>
         </div>
     <?php endif ?>
+
+    <?php if (Session::checkSession('errors')) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?= Session::getSession('errors') ?>
+        </div>
+    <?php endif ?>
+
     <form action="<?= route('dashboard/controllers/products/createProductController.php') ?>" class="form border p-3" method="POST">
         <div class="mb-3">
             <label for="">Name</label>
